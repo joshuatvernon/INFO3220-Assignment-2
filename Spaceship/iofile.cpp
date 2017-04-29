@@ -1,5 +1,7 @@
 #include "iofile.h"
 
+#include <QDir>
+
 namespace si {
 
     IOFile* IOFile::instance = 0;
@@ -35,7 +37,8 @@ namespace si {
         {
             while( std::getline(inputStream, line) )
             {
-                if (!line.empty()) {
+                if (!line.empty())
+                {
                     lines.push_back(line);
                     m_numberOfLines++;
                 }

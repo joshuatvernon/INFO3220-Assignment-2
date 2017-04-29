@@ -13,8 +13,7 @@ namespace si {
     BattleSphere* GameDirector::createBattleSphereStandardMode(BattlesphereBuilder& builder)
     {
         // Read the IO file inside here
-        //IOFile ioFile("config.ini");
-        IOFile* ioFile = IOFile::getInstance("../Spaceship/config.ini");
+        IOFile* ioFile = IOFile::getInstance("../../../../Spaceship/config.ini");
         CommandCentre commandCentre = ioFile->getCommandCentre();
         Defender defender = ioFile->getDefender();
 

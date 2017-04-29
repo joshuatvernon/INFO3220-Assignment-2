@@ -13,7 +13,6 @@ TEMPLATE = app
 
 CONFIG += c++11
 
-
 SOURCES += main.cpp\
     battlesphere.cpp \
     iofile.cpp \
