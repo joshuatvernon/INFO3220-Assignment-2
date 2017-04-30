@@ -7,7 +7,4 @@
     <qresource prefix="/sounds">
         <file>explosion_x.wav</file>
     </qresource>
-    <qresource prefix="/files">
-        <file>config.ini</file>
-    </qresource>
 </RCC>

@@ -1,7 +1,5 @@
 #include "iofile.h"
 
-#include <QDir>
-
 namespace si {
 
     IOFile* IOFile::instance = 0;
