@@ -36,8 +36,7 @@ namespace si {
      */
     BattleSphere* BattlesphereBuilder::getBattlesphere()
     {
-        si::BattleSphere* battlesphere = new
-                si::BattleSphere(nullptr, m_defender, m_bulletSpeed, m_commandCentre);
+        si::BattleSphere* battlesphere = new si::BattleSphere(nullptr, m_defender, m_bulletSpeed, m_commandCentre);
         return battlesphere;
     }
 

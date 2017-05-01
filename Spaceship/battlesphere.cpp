@@ -79,11 +79,36 @@ namespace si {
 
         painter.drawPixmap(m_defender.getX(), m_defender.getY(), m_defenderImg);
 
+        int bulletIDX = 0;
+        QVector<int> offscreenBulletsIDX;
+        // Update bullets on screen
         for (auto &curBullet : m_bullets) {
+            if (curBullet.getY() < 0) {
+                // Bullet has left the screen
+                offscreenBulletsIDX.push_back(bulletIDX);
+            }
+
             painter.drawPixmap(curBullet.getX(), curBullet.getY(), m_bulletImg);
-            curBullet.updateX(m_bulletSpeed);
+
+            if (curBullet.getDirection() == "Left") {
+                // Move the bullet diagonally left across the screen
+                curBullet.updateLeftX(m_bulletSpeed);
+            } else if (curBullet.getDirection() == "Right") {
+                // Move the bullet diagonally right across the screen
+                curBullet.updateRightX(m_bulletSpeed);
+            }
+            // Move the bullet up the screen
             curBullet.updateY(m_bulletSpeed);
+
+            bulletIDX++;
         }
+
+        // Remove the bullets that are no longer visible from the bullets vector
+        for (int bulletIDX : offscreenBulletsIDX) {
+            m_bullets.erase(m_bullets.begin() + bulletIDX);
+        }
+
+        // Does something with stars ???
         for (auto &curStar : m_stars) {
             if (curStar.getOpacity() > 0.6 && curStar.getOpacityDelta() > 0) {
                 curStar.toggleOpacityDelta();
@@ -117,10 +142,23 @@ namespace si {
                 if (m_defender.getX() > maxX) {
                     m_defender.setX(maxX);
                 }
-            } else if (nextCommand == "Fire") {
+            } else if (nextCommand == "Fire" ||
+                       nextCommand == "FireLeft" ||
+                       nextCommand == "FireRight") {
                 int bx = m_defender.getX() + (m_defenderImg.width()/2) - (m_bulletImg.width()/2);
                 int by = m_defender.getY() - m_bulletImg.height();
                 Bullet b(bx, by);
+
+                // Set bullets direction
+                if (nextCommand == "FireLeft") {
+                    b.setDirection("Left");
+                } else if (nextCommand == "FireRight") {
+                    b.setDirection("Right");
+                } else {
+                    b.setDirection("Straight");
+                }
+
+                // Append to bullets
                 m_bullets.push_back(b);
             }
         }

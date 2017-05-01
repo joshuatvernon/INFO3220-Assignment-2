@@ -102,10 +102,12 @@ namespace si {
 
         std::vector<std::string> commands(lines.begin()+5, lines.end());
 
-        std::regex e ("Left|Right|Fire");
+        std::regex re("Left|Right|FireLeft|FireRight|Fire");
+
         for (auto &curLine : commands) {
-            if (!std::regex_match(curLine, e)) {
-                std::cout << "Error: Commands must only be 'Left', 'Right', or 'Fire'" << std::endl;
+            if (!std::regex_match(curLine, re)) {
+                std::cout << curLine << std::endl;
+                std::cout << "Error: Commands must only be 'Left', 'Right', 'Fire', 'FireLeft', or 'FireRight'" << std::endl;
                 return false;
             }
             m_commandCentre.addToBuffer(curLine);

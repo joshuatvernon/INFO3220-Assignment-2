@@ -2,6 +2,7 @@
 #define BULLET_H
 
 #include "gameelement.h"
+#include <QString>
 
 namespace si {
 
@@ -10,8 +11,13 @@ namespace si {
     public:
         Bullet(int bulletStartX, int bulletStartY);
 
-        void updateX(int updateAmount);
+        void updateLeftX(int updateAmount);
+        void updateRightX(int updateAmount);
         void updateY(int updateAmount);
+        QString getDirection();
+        void setDirection(QString direction);
+    private:
+        QString direction;
     };
 
 } // end namespace si
