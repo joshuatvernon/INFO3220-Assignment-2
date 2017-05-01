@@ -11,11 +11,15 @@ namespace si {
     public:
         Bullet(int bulletStartX, int bulletStartY);
 
-        void updateLeftX(int updateAmount);
-        void updateRightX(int updateAmount);
-        void updateY(int updateAmount);
-        QString getDirection();
-        void setDirection(QString direction);
+        virtual ~Bullet(){}
+
+        virtual void updateLeftX(int updateAmount) { setX(getX() - updateAmount); }
+        virtual void updateRightX(int updateAmount) { setX(getX() + updateAmount); }
+
+        virtual QString getDirection() { return direction; }
+        virtual void setDirection(QString d) { direction = d; }
+
+        virtual void updateY(int updateAmount);
     private:
         QString direction;
     };

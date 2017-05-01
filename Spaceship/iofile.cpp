@@ -24,8 +24,8 @@ namespace si {
      *          file if the file is placed inside the build directory created by QT.
      */
     IOFile::IOFile(std::string fileName)
-        : m_fileName(fileName),
-          m_numberOfLines(0)
+        : m_numberOfLines(0),
+          m_fileName(fileName)
     {
         std::string line;
         std::vector<std::string> lines;

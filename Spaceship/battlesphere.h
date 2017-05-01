@@ -14,6 +14,8 @@
 #include "defender.h"
 #include "iofile.h"
 #include "bullet.h"
+#include "alienbulletadapter.h"
+#include "defenderbullet.h"
 #include "star.h"
 
 namespace si {

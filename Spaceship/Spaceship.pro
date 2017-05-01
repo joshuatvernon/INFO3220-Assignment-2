@@ -18,10 +18,13 @@ SOURCES += main.cpp\
     iofile.cpp \
     defender.cpp \
     commandcentre.cpp \
-    bullet.cpp \
     battlespherebuilder.cpp \
     gamedirector.cpp \
-    star.cpp
+    star.cpp \
+    alienbullet.cpp \
+    alienbulletadapter.cpp \
+    defenderbullet.cpp \
+    bullet.cpp
 
 HEADERS  += \
     battlesphere.h \
@@ -32,7 +35,10 @@ HEADERS  += \
     battlespherebuilder.h \
     gamedirector.h \
     star.h \
-    gameelement.h
+    gameelement.h \
+    alienbullet.h \
+    alienbulletadapter.h \
+    defenderbullet.h
 
 RESOURCES += \
     resources.qrc

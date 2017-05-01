@@ -15,9 +15,9 @@ namespace si {
     BattleSphere::BattleSphere(QWidget *parent,
                            Defender d, int bulletSpeed, CommandCentre cc)
         : QDialog(parent),
-          m_defender(d),
           m_bulletSpeed(bulletSpeed),
-          m_commandCentre(cc)
+          m_commandCentre(cc),
+          m_defender(d)
     {
         for (int i=0; i<m_numStars; ++i) {
             int randX = rand() % m_screenWidth;
@@ -97,7 +97,7 @@ namespace si {
                 // Move the bullet diagonally right across the screen
                 curBullet.updateRightX(m_bulletSpeed);
             }
-            // Move the bullet up the screen
+            // Move the bullet up or down the screen
             curBullet.updateY(m_bulletSpeed);
 
             bulletIDX++;
@@ -147,19 +147,26 @@ namespace si {
                        nextCommand == "FireRight") {
                 int bx = m_defender.getX() + (m_defenderImg.width()/2) - (m_bulletImg.width()/2);
                 int by = m_defender.getY() - m_bulletImg.height();
-                Bullet b(bx, by);
+//                Bullet b(bx, by);
+                Bullet db = DefenderBullet(bx, by);
 
                 // Set bullets direction
                 if (nextCommand == "FireLeft") {
-                    b.setDirection("Left");
+                    db.setDirection("Left");
                 } else if (nextCommand == "FireRight") {
-                    b.setDirection("Right");
+                    db.setDirection("Right");
                 } else {
-                    b.setDirection("Straight");
+                    db.setDirection("Straight");
                 }
 
                 // Append to bullets
-                m_bullets.push_back(b);
+                m_bullets.push_back(db);
+
+                Bullet *alienBulletAdapter = new AlienBulletAdapter(new AlienBullet(bx, by));
+                alienBulletAdapter->updateY(10);
+
+                delete alienBulletAdapter;
+
             }
         }
         update();
