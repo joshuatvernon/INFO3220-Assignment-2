@@ -28,7 +28,7 @@ namespace si {
      */
     void Bullet::updateY(int updateAmount)
     {
-        m_yPos -= updateAmount;
+        this->setY(this->getY() - updateAmount);
     }
 
 } // end namespace si
