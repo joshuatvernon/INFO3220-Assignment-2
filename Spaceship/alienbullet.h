@@ -8,11 +8,13 @@ namespace si {
     class AlienBullet : public Bullet
     {
     public:
-        AlienBullet(int bulletStartX, int bulletStartY);
+
+        AlienBullet(int bulletStartX, int bulletStartY, QString bulletType);
 
         ~AlienBullet(){}
 
-        void updateY(int updateAmount);
+        void updateY(int updateAmount) override;
+
     };
 
 } // end namespace si

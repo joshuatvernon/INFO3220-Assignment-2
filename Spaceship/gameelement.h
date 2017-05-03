@@ -5,12 +5,6 @@ namespace si {
     class GameElement
     {
     public:
-        GameElement(int xPos, int yPos)
-            : m_xPos(xPos),
-              m_yPos(yPos)
-        {}
-
-        virtual ~GameElement(){}
 
         virtual int getX() { return m_xPos; }
         virtual int getY() { return m_yPos; }
@@ -19,8 +13,10 @@ namespace si {
         virtual void setY(int y) { m_yPos = y; }
 
     private:
+
         int m_xPos;
         int m_yPos;
+
     };
 } // end namespace si
 

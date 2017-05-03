@@ -9,6 +9,7 @@ namespace si {
     class CommandCentre
     {
     public:
+
         CommandCentre(){}
         ~CommandCentre(){}
 
@@ -17,7 +18,9 @@ namespace si {
         std::string popNext();
 
     private:
+
         std::vector<std::string> m_commandBuffer;
+
     };
 
 } // end namespace si

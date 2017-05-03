@@ -89,7 +89,7 @@ namespace si {
 
         // Scale check
         if (isValidScaleCommand((lines.at(3)))) {
-            std::string scale = getScale(lines.at(3));
+            QString scale = QString::fromStdString(getScale(lines.at(3)));
             m_defender.setScale(scale);
         } else {
             return false;

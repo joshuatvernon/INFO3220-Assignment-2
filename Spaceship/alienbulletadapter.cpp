@@ -8,9 +8,10 @@ namespace si {
      * \param: newAlienBullet, a pointer to an alien bullet object
      */
     AlienBulletAdapter::AlienBulletAdapter(AlienBullet *newAlienBullet)
-        : Bullet(newAlienBullet->getX(), newAlienBullet->getY())
     {
         this->theAlienBullet = newAlienBullet;
+        this->setX(newAlienBullet->getX());
+        this->setY(newAlienBullet->getY());
     }
 
     /**

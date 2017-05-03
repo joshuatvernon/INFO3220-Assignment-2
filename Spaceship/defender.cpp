@@ -8,26 +8,30 @@ namespace si {
      * \param: yPos, starying y coordinate of player
      * \param: scale, size of the player ("tiny", "normal", "large", "giant")
      */
-    Defender::Defender(int xPos, int yPos, std::string scale, int speed)
-        : GameElement(xPos, yPos),
-          m_scale(scale),
-          m_speed(speed)
-    {}
+    Defender::Defender(int xPos, int yPos, QString scale, int speed)
+    {
+        this->setX(xPos);
+        this->setY(yPos);
+        m_scale = scale;
+        m_speed = speed;
+    }
 
     /**
      * \brief: Default defender constructor
      */
     Defender::Defender()
-        : GameElement(0, 0),
-          m_scale("tiny"),
-          m_speed(10)
-    {}
+    {
+        this->setX(0);
+        this->setY(0);
+        m_scale = "tiny";
+        m_speed = 10;
+    }
 
     /**
      * \brief: Sets the size of the player
      * \param: scale, size of the player ("tiny", "normal", "large", "giant")
      */
-    void Defender::setScale(std::string scale)
+    void Defender::setScale(QString scale)
     {
         m_scale = scale;
     }
@@ -45,7 +49,7 @@ namespace si {
      * \brief: Getter function for scale
      * \result: the scale, one of ("tiny", "normal", "large", "giant")
      */
-    std::string Defender::getScale() const
+    QString Defender::getScale() const
     {
         return m_scale;
     }

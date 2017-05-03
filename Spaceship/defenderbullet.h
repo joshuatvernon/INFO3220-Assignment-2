@@ -8,11 +8,13 @@ namespace si {
     class DefenderBullet : public Bullet
     {
     public:
-        DefenderBullet(int bulletStartX, int bulletStartY);
+
+        DefenderBullet(int bulletStartX, int bulletStartY, QString bulletType);
 
         ~DefenderBullet(){}
 
-        void updateY(int updateAmount);
+        void updateY(int updateAmount) override;
+
     };
 
 } // end namespace si

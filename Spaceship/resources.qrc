@@ -1,8 +1,16 @@
 <RCC>
     <qresource prefix="/images">
         <file>defender.png</file>
-        <file>fireball.png</file>
         <file>star.png</file>
+        <file>charizard.png</file>
+        <file>charmander.png</file>
+        <file>charmeleon.png</file>
+        <file>mega-charizard.png</file>
+        <file>giant-flame.png</file>
+        <file>large-flame.png</file>
+        <file>normal-flame.png</file>
+        <file>pokeball.png</file>
+        <file>tiny-flame.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>explosion_x.wav</file>

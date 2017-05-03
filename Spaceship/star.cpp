@@ -8,8 +8,10 @@ namespace si {
      * \param: starY, the y coordinate of the star
      */
     Star::Star(int starX, int starY)
-        : GameElement(starX, starY)
-    {}
+    {
+        this->setX(starX);
+        this->setY(starY);
+    }
 
     /**
      * \brief: Transparency getter

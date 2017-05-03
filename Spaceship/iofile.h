@@ -15,6 +15,7 @@ namespace si {
     class IOFile
     {
     public:
+
         static IOFile* getInstance(std::string fileName);
 
         ~IOFile(){}
@@ -30,9 +31,11 @@ namespace si {
         const Defender& getDefender() const;
 
     protected:
+
         IOFile(std::string fileName);
 
     private:
+
         static IOFile* instance;
         bool processLines(const std::vector<std::string>& lines);
 
@@ -52,6 +55,7 @@ namespace si {
         CommandCentre m_commandCentre;
 
         std::string m_fileName;
+
     };
 
 } // end namespace si

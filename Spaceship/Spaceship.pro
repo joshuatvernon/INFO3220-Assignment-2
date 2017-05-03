@@ -23,8 +23,7 @@ SOURCES += main.cpp\
     star.cpp \
     alienbullet.cpp \
     alienbulletadapter.cpp \
-    defenderbullet.cpp \
-    bullet.cpp
+    defenderbullet.cpp
 
 HEADERS  += \
     battlesphere.h \

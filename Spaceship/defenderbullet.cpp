@@ -1,16 +1,18 @@
 #include "defenderbullet.h"
-#include <iostream>
 
 namespace si {
 
+
     /**
-     * \brief: Instantiates a GameElement object
+     * \brief: Instantiates a Bullet object
      * \param: bulletStartX, starting point for this bullet
      * \param: bulletStartY, starting point for this bullet
      */
-    DefenderBullet::DefenderBullet(int bulletStartX, int bulletStartY)
-        : Bullet(bulletStartX, bulletStartY)
-    {}
+    DefenderBullet::DefenderBullet(int bulletStartX, int bulletStartY, QString bulletType) {
+       this->setX(bulletStartX);
+       this->setY(bulletStartY);
+       this->setBulletType(bulletType);
+    }
 
     /**
      * \brief: Determines the amount of y direction motion of the bullet
@@ -20,7 +22,6 @@ namespace si {
     void DefenderBullet::updateY(int updateAmount)
     {
         this->setY(this->getY() - updateAmount);
-        std::cout << "DEFENDER!" << std::endl;
     }
 
 } // end namespace si

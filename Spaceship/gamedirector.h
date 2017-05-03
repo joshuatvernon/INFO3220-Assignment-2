@@ -9,7 +9,9 @@ namespace si {
     class GameDirector
     {
     public:
+
         si::BattleSphere* createBattleSphereStandardMode(BattlesphereBuilder& builder);
+
     };
 
 } // end namespace si

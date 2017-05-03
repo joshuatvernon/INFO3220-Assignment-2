@@ -12,8 +12,7 @@ namespace si {
      * \param: commandCentre, stores buffer of user inputs (just file inputs initially)
      * \result: the person
      */
-    BattleSphere::BattleSphere(QWidget *parent,
-                           Defender d, int bulletSpeed, CommandCentre cc)
+    BattleSphere::BattleSphere(QWidget *parent, Defender d, int bulletSpeed, CommandCentre cc)
         : QDialog(parent),
           m_bulletSpeed(bulletSpeed),
           m_commandCentre(cc),
@@ -29,21 +28,34 @@ namespace si {
             m_stars.push_back(curStar);
         }
 
-        m_defenderImg.load(":/images/defender.png");
-        m_bulletImg.load(":/images/fireball.png");
+        m_size = d.getScale();
+
+        m_alienBulletImg.load(":/images/pokeball.png");
+
         m_starImg.load(":/images/star.png");
 
         m_starImg = m_starImg.scaledToWidth(5);
 
-        if (d.getScale() == "tiny") {
-            m_defenderImg = m_defenderImg.scaledToWidth(80);
-        } else if (d.getScale() == "normal") {
+        // Set the defender and defender bullet images
+        if (m_size == "tiny") {
+            m_defenderImg.load(":/images/charmander.png");
+            m_defenderImg = m_defenderImg.scaledToWidth(50);
+            m_bulletImg.load(":/images/tiny-flame.png");
+        } else if (m_size == "normal") {
+            m_defenderImg.load(":/images/charmeleon.png");
+            m_defenderImg = m_defenderImg.scaledToWidth(70);
+            m_bulletImg.load(":/images/normal-flame.png");
+        } else if (m_size == "large") {
+            m_defenderImg.load(":/images/charizard.png");
             m_defenderImg = m_defenderImg.scaledToWidth(100);
-        } else if (d.getScale() == "large") {
-            m_defenderImg = m_defenderImg.scaledToWidth(120);
-        } else if (d.getScale() == "giant") {
-            m_defenderImg = m_defenderImg.scaledToWidth(140);
+            m_bulletImg.load(":/images/large-flame.png");
+        } else if (m_size == "giant") {
+            m_defenderImg.load(":/images/mega-charizard.png");
+            m_defenderImg = m_defenderImg.scaledToWidth(150);
+            m_bulletImg.load(":/images/giant-flame.png");
         }
+
+        m_defender.setY(m_screenHeight - m_defenderImg.height());
 
         setStyleSheet("background-color: #000000;");
         this->resize(m_screenWidth, m_screenHeight);
@@ -88,7 +100,14 @@ namespace si {
                 offscreenBulletsIDX.push_back(bulletIDX);
             }
 
-            painter.drawPixmap(curBullet.getX(), curBullet.getY(), m_bulletImg);
+            // Draw bullet on screen
+            if (curBullet.getBulletType() == "Alien") {
+                // Draw an Alien bullet
+                painter.drawPixmap(curBullet.getX(), curBullet.getY(), m_alienBulletImg);
+            } else {
+                // Draw a Defender Bullet
+                painter.drawPixmap(curBullet.getX(), curBullet.getY(), m_bulletImg);
+            }
 
             if (curBullet.getDirection() == "Left") {
                 // Move the bullet diagonally left across the screen
@@ -147,8 +166,8 @@ namespace si {
                        nextCommand == "FireRight") {
                 int bx = m_defender.getX() + (m_defenderImg.width()/2) - (m_bulletImg.width()/2);
                 int by = m_defender.getY() - m_bulletImg.height();
-//                Bullet b(bx, by);
-                Bullet db = DefenderBullet(bx, by);
+
+                DefenderBullet db (bx, by, "defender");
 
                 // Set bullets direction
                 if (nextCommand == "FireLeft") {
@@ -161,12 +180,6 @@ namespace si {
 
                 // Append to bullets
                 m_bullets.push_back(db);
-
-                Bullet *alienBulletAdapter = new AlienBulletAdapter(new AlienBullet(bx, by));
-                alienBulletAdapter->updateY(10);
-
-                delete alienBulletAdapter;
-
             }
         }
         update();

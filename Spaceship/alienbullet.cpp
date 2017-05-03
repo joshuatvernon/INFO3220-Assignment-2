@@ -3,14 +3,19 @@
 
 namespace si {
 
+
     /**
-     * \brief: Instantiates a GameElement object
+     * \brief: Instantiates a Bullet object
      * \param: bulletStartX, starting point for this bullet
      * \param: bulletStartY, starting point for this bullet
      */
-    AlienBullet::AlienBullet(int bulletStartX, int bulletStartY)
-        : Bullet(bulletStartX, bulletStartY)
-    {}
+    AlienBullet::AlienBullet(int bulletStartX, int bulletStartY, QString bulletType)
+    {
+        this->setX(bulletStartX);
+        this->setY(bulletStartY);
+        this->setBulletType(bulletType);
+    }
+
 
     /**
      * \brief: Determines the amount of y direction motion of the bullet

@@ -12,6 +12,7 @@ namespace si {
     class BattlesphereBuilder
     {
     public:
+
         BattlesphereBuilder(){}
 
         void buildDefender(const Defender &d);
@@ -23,9 +24,11 @@ namespace si {
         si::BattleSphere* getBattlesphere();
 
     private:
+
         Defender m_defender;
         int m_bulletSpeed;
         CommandCentre m_commandCentre;
+
     };
 
 } // end namespace si

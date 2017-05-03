@@ -9,19 +9,22 @@ namespace si {
     class Bullet : public GameElement
     {
     public:
-        Bullet(int bulletStartX, int bulletStartY);
 
-        virtual ~Bullet(){}
+        void updateLeftX(int updateAmount) { setX(getX() - updateAmount); }
+        void updateRightX(int updateAmount) { setX(getX() + updateAmount); }
 
-        virtual void updateLeftX(int updateAmount) { setX(getX() - updateAmount); }
-        virtual void updateRightX(int updateAmount) { setX(getX() + updateAmount); }
+        QString getDirection() { return m_direction; }
+        void setDirection(QString d) { m_direction = d; }
 
-        virtual QString getDirection() { return direction; }
-        virtual void setDirection(QString d) { direction = d; }
+        QString getBulletType() { return this->m_bulletType; }
+        void setBulletType(QString bulletType) { this->m_bulletType = bulletType; }
+        virtual void updateY(int updateAmount) = 0;
 
-        virtual void updateY(int updateAmount);
     private:
-        QString direction;
+
+        QString m_direction;
+        QString m_bulletType;
+
     };
 
 } // end namespace si

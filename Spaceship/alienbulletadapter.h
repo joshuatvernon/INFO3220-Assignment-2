@@ -10,15 +10,18 @@ namespace si {
     class AlienBulletAdapter : public Bullet
     {
     public:
+
         AlienBullet *theAlienBullet;
 
         AlienBulletAdapter(AlienBullet *newAlienBullet);
         ~AlienBulletAdapter(){}
 
-        void updateY(int updateAmount);
+        void updateY(int updateAmount) override;
 
     private:
+
         QString direction;
+
     };
 
 } // end namespace si
