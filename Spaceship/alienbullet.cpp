@@ -22,7 +22,7 @@ namespace si {
      *         in each frame.
      * \param: updateAmount, the number of pixels to move in the y direction
      */
-    void AlienBullet::updateY(int updateAmount)
+    void AlienBullet::updateDownY(int updateAmount)
     {
         this->setY(this->getY() + updateAmount);
         std::cout << "ALIEN!" << std::endl;

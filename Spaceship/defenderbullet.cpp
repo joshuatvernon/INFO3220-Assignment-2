@@ -8,10 +8,11 @@ namespace si {
      * \param: bulletStartX, starting point for this bullet
      * \param: bulletStartY, starting point for this bullet
      */
-    DefenderBullet::DefenderBullet(int bulletStartX, int bulletStartY, QString bulletType) {
+    DefenderBullet::DefenderBullet(int bulletStartX, int bulletStartY, QString bulletType, SharedMedia *media) {
        this->setX(bulletStartX);
        this->setY(bulletStartY);
        this->setBulletType(bulletType);
+       this->setMedia(media);
     }
 
     /**

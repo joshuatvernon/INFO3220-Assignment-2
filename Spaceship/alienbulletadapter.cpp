@@ -1,5 +1,4 @@
 #include "alienbulletadapter.h"
-#include <iostream>
 
 namespace si {
 
@@ -7,7 +6,7 @@ namespace si {
      * \brief: initalises the alienBullet member variable with given alienBullet
      * \param: newAlienBullet, a pointer to an alien bullet object
      */
-    AlienBulletAdapter::AlienBulletAdapter(AlienBullet *newAlienBullet)
+    AlienBulletAdapter::AlienBulletAdapter(DownBullet *newAlienBullet)
     {
         this->theAlienBullet = newAlienBullet;
         this->setX(newAlienBullet->getX());
@@ -21,8 +20,7 @@ namespace si {
      */
     void AlienBulletAdapter::updateY(int updateAmount)
     {
-        theAlienBullet->updateY(updateAmount);
-        std::cout << "made it here" << std::endl;
+        theAlienBullet->updateDownY(updateAmount);
     }
 
 } // end namespace si

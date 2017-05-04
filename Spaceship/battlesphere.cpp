@@ -41,19 +41,26 @@ namespace si {
             m_defenderImg.load(":/images/charmander.png");
             m_defenderImg = m_defenderImg.scaledToWidth(50);
             m_bulletImg.load(":/images/tiny-flame.png");
+            m_sharedSoundPath = ":/sounds/charmander.wav";
         } else if (m_size == "normal") {
             m_defenderImg.load(":/images/charmeleon.png");
             m_defenderImg = m_defenderImg.scaledToWidth(70);
             m_bulletImg.load(":/images/normal-flame.png");
+            m_sharedSoundPath = ":/sounds/charmeleon.wav";
         } else if (m_size == "large") {
             m_defenderImg.load(":/images/charizard.png");
             m_defenderImg = m_defenderImg.scaledToWidth(100);
             m_bulletImg.load(":/images/large-flame.png");
+            m_sharedSoundPath = ":/sounds/charizard.wav";
         } else if (m_size == "giant") {
             m_defenderImg.load(":/images/mega-charizard.png");
             m_defenderImg = m_defenderImg.scaledToWidth(150);
             m_bulletImg.load(":/images/giant-flame.png");
+            m_sharedSoundPath = ":/sounds/mega-charizard.wav";
         }
+
+        SharedMediaFactory* sharedMediaFactory = new SharedMediaFactory();
+        m_defenderBulletSharedMedia = sharedMediaFactory->getSharedMedia("defenderBullet", m_bulletImg, m_sharedSoundPath);
 
         m_defender.setY(m_screenHeight - m_defenderImg.height());
 
@@ -78,6 +85,7 @@ namespace si {
      * \brief: Destroys dynamically allocated variables
      */
     BattleSphere::~BattleSphere() {
+        delete m_defenderBulletSharedMedia;
         delete m_timer;
         delete m_button;
     }
@@ -106,7 +114,7 @@ namespace si {
                 painter.drawPixmap(curBullet.getX(), curBullet.getY(), m_alienBulletImg);
             } else {
                 // Draw a Defender Bullet
-                painter.drawPixmap(curBullet.getX(), curBullet.getY(), m_bulletImg);
+                painter.drawPixmap(curBullet.getX(), curBullet.getY(), curBullet.getImage());
             }
 
             if (curBullet.getDirection() == "Left") {
@@ -167,7 +175,7 @@ namespace si {
                 int bx = m_defender.getX() + (m_defenderImg.width()/2) - (m_bulletImg.width()/2);
                 int by = m_defender.getY() - m_bulletImg.height();
 
-                DefenderBullet db (bx, by, "defender");
+                DefenderBullet db(bx, by, "defender", m_defenderBulletSharedMedia);
 
                 // Set bullets direction
                 if (nextCommand == "FireLeft") {
@@ -177,6 +185,8 @@ namespace si {
                 } else {
                     db.setDirection("Straight");
                 }
+
+                db.getSound()->play();
 
                 // Append to bullets
                 m_bullets.push_back(db);

@@ -1,19 +1,19 @@
 #ifndef ALIENBULLETADAPTER_H
 #define ALIENBULLETADAPTER_H
 
-#include "bullet.h"
-#include "alienbullet.h"
+#include "upbullet.h"
+#include "downbullet.h"
 #include <QString>
 
 namespace si {
 
-    class AlienBulletAdapter : public Bullet
+    class AlienBulletAdapter : public UpBullet
     {
     public:
 
-        AlienBullet *theAlienBullet;
+        DownBullet *theAlienBullet;
 
-        AlienBulletAdapter(AlienBullet *newAlienBullet);
+        AlienBulletAdapter(DownBullet *newAlienBullet);
         ~AlienBulletAdapter(){}
 
         void updateY(int updateAmount) override;

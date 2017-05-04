@@ -2,7 +2,10 @@
 #define BULLET_H
 
 #include "gameelement.h"
+#include "sharedmedia.h"
 #include <QString>
+#include <QPixmap>
+#include <QSound>
 
 namespace si {
 
@@ -18,12 +21,16 @@ namespace si {
 
         QString getBulletType() { return this->m_bulletType; }
         void setBulletType(QString bulletType) { this->m_bulletType = bulletType; }
-        virtual void updateY(int updateAmount) = 0;
+
+        void setMedia(SharedMedia* media) { this->m_media = media; }
+        QPixmap getImage() { return this->m_media->getImage(); }
+        QSound * getSound() { return this->m_media->getSound(); }
 
     private:
 
         QString m_direction;
         QString m_bulletType;
+        SharedMedia* m_media;
 
     };
 

@@ -1,19 +1,19 @@
 #ifndef DEFENDERBULLET_H
 #define DEFENDERBULLET_H
 
-#include "bullet.h"
+#include "upbullet.h"
 
 namespace si {
 
-    class DefenderBullet : public Bullet
+    class DefenderBullet : public UpBullet
     {
     public:
 
-        DefenderBullet(int bulletStartX, int bulletStartY, QString bulletType);
+        DefenderBullet(int bulletStartX, int bulletStartY, QString bulletType, SharedMedia *media);
 
         ~DefenderBullet(){}
 
-        void updateY(int updateAmount) override;
+        void updateY(int updateAmount);
 
     };
 

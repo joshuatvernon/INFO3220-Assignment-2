@@ -13,6 +13,9 @@
         <file>tiny-flame.png</file>
     </qresource>
     <qresource prefix="/sounds">
-        <file>explosion_x.wav</file>
+        <file>charizard.wav</file>
+        <file>charmander.wav</file>
+        <file>charmeleon.wav</file>
+        <file>mega-charizard.wav</file>
     </qresource>
 </RCC>

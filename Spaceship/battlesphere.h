@@ -17,6 +17,7 @@
 #include "alienbulletadapter.h"
 #include "defenderbullet.h"
 #include "star.h"
+#include "sharedmediafactory.h"
 
 namespace si {
 
@@ -44,6 +45,10 @@ namespace si {
         QPixmap m_normalDefenderBulletImg;
         QPixmap m_largeDefenderBulletImg;
         QPixmap m_giantDefenderBulletImg;
+
+        QString m_sharedSoundPath;
+
+        SharedMedia *m_defenderBulletSharedMedia;
 
         QPixmap m_starImg;
         QTimer* m_timer;

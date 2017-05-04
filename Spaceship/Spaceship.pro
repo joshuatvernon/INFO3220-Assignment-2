@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia
 
 TARGET = Spaceship
 TEMPLATE = app
@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     star.cpp \
     alienbullet.cpp \
     alienbulletadapter.cpp \
-    defenderbullet.cpp
+    defenderbullet.cpp \
+    sharedmedia.cpp \
+    sharedmediafactory.cpp
 
 HEADERS  += \
     battlesphere.h \
@@ -37,7 +39,11 @@ HEADERS  += \
     gameelement.h \
     alienbullet.h \
     alienbulletadapter.h \
-    defenderbullet.h
+    defenderbullet.h \
+    downbullet.h \
+    upbullet.h \
+    sharedmedia.h \
+    sharedmediafactory.h
 
 RESOURCES += \
     resources.qrc

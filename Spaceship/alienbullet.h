@@ -1,11 +1,11 @@
 #ifndef ALIENBULLET_H
 #define ALIENBULLET_H
 
-#include "bullet.h"
+#include "downbullet.h"
 
 namespace si {
 
-    class AlienBullet : public Bullet
+    class AlienBullet : public DownBullet
     {
     public:
 
@@ -13,7 +13,7 @@ namespace si {
 
         ~AlienBullet(){}
 
-        void updateY(int updateAmount) override;
+        void updateDownY(int updateAmount);
 
     };
 
