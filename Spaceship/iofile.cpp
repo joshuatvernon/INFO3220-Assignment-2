@@ -69,20 +69,20 @@ namespace si {
             return false;
         }
 
-        // X coordinate check
+        // Defender X coordinate check
         if (isValidCoordinateCommand(lines.at(1), true)) {
             int xCoordinate = getCoordinate(lines.at(1));
             m_defender.setX(xCoordinate);
-            std::cout << "X coord is : " << xCoordinate << std::endl;
+            std::cout << "Defender X coord is: " << xCoordinate << std::endl;
         } else {
             return false;
         }
 
-        // Y coordinate check
+        // Defender Y coordinate check
         if (isValidCoordinateCommand(lines.at(2), false)) {
             int yCoordinate = getCoordinate(lines.at(2));
             m_defender.setY(yCoordinate);
-            std::cout << "Y coord is: " << yCoordinate << std::endl;
+            std::cout << "Defender Y coord is: " << yCoordinate << std::endl;
         } else {
             return false;
         }
@@ -95,17 +95,59 @@ namespace si {
             return false;
         }
 
-        if (lines.at(4) != "[ Commands ]") {
-            std::cout << "ERROR: 4th line must read [ Commands ]" << std::endl;
+        // Aliens check
+        if (lines.at(4) != "[ Aliens ]") {
+            std::cout << "ERROR: 4th line must read [ Aliens ]" << std::endl;
             return false;
         }
 
-        std::vector<std::string> commands(lines.begin()+5, lines.end());
+        // Aliens X coordinate check
+        if (isValidCoordinateCommand(lines.at(5), true)) {
+            int xCoordinate = getCoordinate(lines.at(5));
+//            m_defender.setX(xCoordinate);
+            std::cout << "Aliens X coord is: " << xCoordinate << std::endl;
+        } else {
+            return false;
+        }
 
-        std::regex re("Left|Right|FireLeft|FireRight|Fire");
+        // Aliens Y coordinate check
+        if (isValidCoordinateCommand(lines.at(6), false)) {
+            int yCoordinate = getCoordinate(lines.at(6));
+//            m_defender.setY(yCoordinate);
+            std::cout << "Aliens Y coord is: " << yCoordinate << std::endl;
+        } else {
+            return false;
+        }
+
+        if (lines.at(7) != "[ AlienMovements ]") {
+            std::cout << "ERROR: 7th line must read [ AlienMovements ]" << std::endl;
+            return false;
+        }
+
+        std::vector<std::string> alienMovements(lines.begin()+8,lines.begin()+24);
+
+        std::regex movementsRegex("Left|Right");
+
+        for (auto &alienMovement : alienMovements) {
+            if (!std::regex_match(alienMovement, movementsRegex)) {
+                std::cout << alienMovement << std::endl;
+                std::cout << "Error: Alien movements must only be 'Left' or 'Right'" << std::endl;
+                return false;
+            }
+//            m_commandCentre.addToBuffer(alienMovement);
+        }
+
+        if (lines.at(24) != "[ Commands ]") {
+            std::cout << "ERROR: 24th line must read [ Commands ]" << std::endl;
+            return false;
+        }
+
+        std::vector<std::string> commands(lines.begin()+25, lines.end());
+
+        std::regex commandsRegex("Left|Right|FireLeft|FireRight|Fire");
 
         for (auto &curLine : commands) {
-            if (!std::regex_match(curLine, re)) {
+            if (!std::regex_match(curLine, commandsRegex)) {
                 std::cout << curLine << std::endl;
                 std::cout << "Error: Commands must only be 'Left', 'Right', 'Fire', 'FireLeft', or 'FireRight'" << std::endl;
                 return false;

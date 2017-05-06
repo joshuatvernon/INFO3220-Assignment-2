@@ -43,7 +43,10 @@ HEADERS  += \
     downbullet.h \
     upbullet.h \
     sharedmedia.h \
-    sharedmediafactory.h
+    sharedmediafactory.h \
+    alien.h \
+    swarmComponent.h \
+    swarmComposite.h
 
 RESOURCES += \
     resources.qrc

@@ -12,7 +12,7 @@ namespace si {
             return sharedMediaMap.value(name);
         } else {
             // SharedMedia isn't created yet -- create new instance to return
-            SharedMedia *newSharedMedia = new SharedMedia(image, soundPath);
+            SharedMedia *newSharedMedia = new SharedMedia(image, soundPath, name);
             sharedMediaMap.insert(name, newSharedMedia);
             return newSharedMedia;
         }

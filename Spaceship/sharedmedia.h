@@ -10,7 +10,7 @@ namespace si {
     {
     public:
 
-        explicit SharedMedia(QPixmap image, QString stringPath);
+        explicit SharedMedia(QPixmap image, QString stringPath, QString type);
 
         SharedMedia(QPixmap image);
 
@@ -18,12 +18,15 @@ namespace si {
 
         QSound* getSound();
         QPixmap getImage();
+        QString getType();
         void setImage(QPixmap image);
+        void setType(QString type);
 
     private:
 
         QSound m_sound;
         QPixmap m_image;
+        QString m_type;
 
     };
 

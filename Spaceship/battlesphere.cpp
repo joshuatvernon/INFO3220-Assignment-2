@@ -61,6 +61,7 @@ namespace si {
 
         SharedMediaFactory* sharedMediaFactory = new SharedMediaFactory();
         m_defenderBulletSharedMedia = sharedMediaFactory->getSharedMedia("defenderBullet", m_bulletImg, m_sharedSoundPath);
+        m_defenderBulletSharedMedia = sharedMediaFactory->getSharedMedia("defenderBullet", m_bulletImg);
 
         m_defender.setY(m_screenHeight - m_defenderImg.height());
 

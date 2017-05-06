@@ -2,7 +2,7 @@
 
 namespace si {
 
-    SharedMedia::SharedMedia(QPixmap image, QString stringPath) : m_sound(stringPath)
+    SharedMedia::SharedMedia(QPixmap image, QString stringPath, QString type) : m_sound(stringPath)
     {
         this->m_image = image;
     }
@@ -22,9 +22,17 @@ namespace si {
         return this->m_image;
     }
 
+    QString SharedMedia::getType() {
+        return this->m_type;
+    }
+
     void SharedMedia::setImage(QPixmap image)
     {
         this->m_image = image;
+    }
+
+    void SharedMedia::setType(QString type) {
+        this->m_type = type;
     }
 
 } // end namespace si
