@@ -172,7 +172,6 @@ namespace si {
         {
 
             int numberOfSwarms = getNumberOfSwarms(lines.at(lineNumber));
-//            m_swarm.setNumberOfSwarms(yCoordinate);
             std::cout << "Number of Swarms: " << numberOfSwarms << std::endl;
 
         } else {

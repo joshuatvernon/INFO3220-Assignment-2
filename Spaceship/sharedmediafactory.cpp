@@ -2,9 +2,16 @@
 
 namespace si {
 
+    /**
+     * \brief: Default constructor for the shared media factory
+     */
     SharedMediaFactory::SharedMediaFactory()
     {}
 
+    /**
+     * \brief: Return an instance of shared media with the arguments as data,
+     * ensure there's only one instance of each type
+     */
     SharedMedia* SharedMediaFactory::getSharedMedia(QString name, QPixmap image, QString soundPath, int speed)
     {
         if (sharedMediaMap.contains(name)) {

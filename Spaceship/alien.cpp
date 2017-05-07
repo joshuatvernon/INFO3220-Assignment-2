@@ -33,7 +33,7 @@ namespace si {
 
 
     /**
-     * \brief: move
+     * \brief: moves the individual alien
      */
     void Alien::move()
     {
@@ -58,6 +58,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Sets the trajectory for the individual alien
+     */
     void Alien::setTraj(QStringList traj)
     {
 
@@ -66,6 +69,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Speeds up the descent of the individual alien
+     */
     void Alien::speedUp()
     {
 

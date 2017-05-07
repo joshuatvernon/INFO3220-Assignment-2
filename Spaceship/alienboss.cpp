@@ -8,6 +8,7 @@ namespace si {
      * \brief: Instantiates a Bullet object
      * \param: bulletStartX, starting point for this bullet
      * \param: bulletStartY, starting point for this bullet
+     * \param: media, the images and sounds for the object
      */
     AlienBoss::AlienBoss(int alienStartX, int alienStartY, SharedMedia *media)
     {
@@ -23,7 +24,7 @@ namespace si {
     }
 
     /**
-     * \brief: Deconstruct alien object by deleting shared media
+     * \brief: Deconstruct the boss alien object by deleting shared media
      */
     AlienBoss::~AlienBoss()
     {
@@ -34,7 +35,7 @@ namespace si {
 
 
     /**
-     * \brief: move
+     * \brief: moves the boss alien in the direction of the defender object
      */
     void AlienBoss::move()
     {
@@ -44,6 +45,10 @@ namespace si {
     }
 
 
+    /**
+     * \brief: sets the direction in which the boss alien needs to move so as to
+     * follow the defender
+     */
     void AlienBoss::setDirection(int defenderLocation)
     {
 
@@ -56,6 +61,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Speeds up the descent of the boss alien
+     */
     void AlienBoss::speedUp()
     {
 

@@ -3,7 +3,9 @@
 
 namespace si {
 
-
+    /**
+     * \brief: Constructs the shared media for an object
+     */
     SharedMedia::SharedMedia(QPixmap image, QString stringPath, QString type, int speed) : m_sound(stringPath)
     {
 
@@ -14,6 +16,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: returns the sound item the shared media holds
+     */
     QSound* SharedMedia::getSound()
     {
 
@@ -22,6 +27,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Returns the image item the shared media holds
+     */
     QPixmap SharedMedia::getImage()
     {
 
@@ -30,6 +38,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Returns what type of shared media this is stored as
+     */
     QString SharedMedia::getType()
     {
 
@@ -38,6 +49,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: returns the speed variable from within the shared media
+     */
     int SharedMedia::getSpeed() {
 
         return this->m_speed;
@@ -45,6 +59,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Sets the shared medias image variable
+     */
     void SharedMedia::setImage(QPixmap image)
     {
 
@@ -53,6 +70,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Sets the shared medias type variable
+     */
     void SharedMedia::setType(QString type)
     {
 
@@ -61,6 +81,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Sets the shared medias speed variable
+     */
     void SharedMedia::setSpeed(int speed)
     {
 

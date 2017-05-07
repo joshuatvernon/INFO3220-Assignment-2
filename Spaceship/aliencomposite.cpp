@@ -18,6 +18,9 @@ namespace si {
     }
 
 
+    /**
+     * \brief: Constructor for the composite alien object
+     */
     AlienComposite::AlienComposite(AlienBoss *alienBoss)
     {
 
@@ -26,7 +29,7 @@ namespace si {
     }
 
     /**
-     * \brief: Default constructor
+     * \brief: Default constructor for the composite alien object
      */
     AlienComposite::AlienComposite()
     {
@@ -36,7 +39,7 @@ namespace si {
 
 
     /**
-     * \brief: move
+     * \brief: moves all the individual and composite children aliens
      */
     void AlienComposite::move()
     {
@@ -56,7 +59,7 @@ namespace si {
 
 
     /**
-     * \brief: speed up
+     * \brief: speeds up all the children aliens (currently doesn't speed up boss as it's not needed yet)
      */
     void AlienComposite::speedUp()
     {
@@ -70,7 +73,7 @@ namespace si {
 
 
     /**
-     * \brief: add
+     * \brief: adds an alien to the composite
      */
     void AlienComposite::add(Alien *alienComponent)
     {
@@ -81,7 +84,7 @@ namespace si {
 
 
     /**
-     * \brief: get boss
+     * \brief: gets the boss alien
      */
     AlienBoss* AlienComposite::getBoss()
     {
@@ -90,6 +93,10 @@ namespace si {
 
     }
 
+
+    /**
+     * \brief: Removes the boss alien
+     */
     void AlienComposite::removeBoss()
     {
 
@@ -97,8 +104,9 @@ namespace si {
 
     }
 
+
     /**
-     * \brief: remove
+     * \brief: removes an alien from the composite based on the index of that alien
      */
     void AlienComposite::remove(int idx)
     {
@@ -109,7 +117,7 @@ namespace si {
 
 
     /**
-     * \brief: Return the list of alien components
+     * \brief: Return the list of alien components and individual aliens
      */
     QVector<Alien *> AlienComposite::getList()
     {
