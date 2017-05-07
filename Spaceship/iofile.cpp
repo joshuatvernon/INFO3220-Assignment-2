@@ -59,104 +59,312 @@ namespace si {
      */
     bool IOFile::processLines(const std::vector<std::string>& lines)
     {
-        if (lines.size() < 5) {
+
+        int lineNumber = 0;
+
+        if (lines.size() < 5)
+        {
+
             std::cout << "ERROR: Not enought lines in input file" << std::endl;
             return false;
+
         }
 
-        if (lines.at(0) != "[ Defender ]") {
+        if (lines.at(lineNumber) != "[ Defender ]")
+        {
+
             std::cout << "ERROR: First line must read [ Defender ]" << std::endl;
             return false;
+
         }
+
+        lineNumber++;
 
         // Defender X coordinate check
-        if (isValidCoordinateCommand(lines.at(1), true)) {
-            int xCoordinate = getCoordinate(lines.at(1));
+        if (isValidCoordinateCommand(lines.at(lineNumber), true))
+        {
+
+            int xCoordinate = getCoordinate(lines.at(lineNumber));
             m_defender.setX(xCoordinate);
             std::cout << "Defender X coord is: " << xCoordinate << std::endl;
+
         } else {
+
             return false;
+
         }
+
+        lineNumber++;
 
         // Defender Y coordinate check
-        if (isValidCoordinateCommand(lines.at(2), false)) {
-            int yCoordinate = getCoordinate(lines.at(2));
+        if (isValidCoordinateCommand(lines.at(lineNumber), false))
+        {
+
+            int yCoordinate = getCoordinate(lines.at(lineNumber));
             m_defender.setY(yCoordinate);
             std::cout << "Defender Y coord is: " << yCoordinate << std::endl;
+
         } else {
+
             return false;
+
         }
+
+        lineNumber++;
 
         // Scale check
-        if (isValidScaleCommand((lines.at(3)))) {
-            QString scale = QString::fromStdString(getScale(lines.at(3)));
+        if (isValidScaleCommand((lines.at(lineNumber))))
+        {
+
+            QString scale = QString::fromStdString(getScale(lines.at(lineNumber)));
             m_defender.setScale(scale);
+
         } else {
+
             return false;
+
         }
+
+        lineNumber++;
 
         // Aliens check
-        if (lines.at(4) != "[ Aliens ]") {
+        if (lines.at(lineNumber) != "[ Aliens ]")
+        {
+
             std::cout << "ERROR: 4th line must read [ Aliens ]" << std::endl;
             return false;
+
         }
+        lineNumber++;
+
+        SharedMediaFactory *sharedMediaFactory = new SharedMediaFactory();
+
+        QRegExp alienBossRegex("AlienBoss\\s=\\s(On|Off)");
+        QString alienBossLine = QString::fromStdString(lines.at(lineNumber));
+
+        if (alienBossRegex.exactMatch(alienBossLine))
+        {
+
+            QRegExp alienBossOnRegex("AlienBoss\\s=\\sOn");
+
+            if (alienBossOnRegex.exactMatch(alienBossLine))
+            {
+                QPixmap bossImg = QPixmap(":/images/venusaur.png");
+                bossImg = bossImg.scaledToWidth(100);
+                SharedMedia *media = sharedMediaFactory->getSharedMedia("V", bossImg, nullptr, 10);
+                AlienBoss *bossAlien = new AlienBoss(350, 60, media);
+                m_swarm = AlienComposite(bossAlien);
+
+            }
+
+        } else {
+
+            std::cout << alienBossLine.toStdString() << std::endl;
+            std::cout << "ERROR: alien boss must be either 'On' or 'Off'" << std::endl;
+            return false;
+
+        }
+
+        lineNumber++;
+
+        // Number of swarms
+        if (isValidNumberOfSwarms(lines.at(lineNumber)))
+        {
+
+            int numberOfSwarms = getNumberOfSwarms(lines.at(lineNumber));
+//            m_swarm.setNumberOfSwarms(yCoordinate);
+            std::cout << "Number of Swarms: " << numberOfSwarms << std::endl;
+
+        } else {
+
+            return false;
+
+        }
+
+        lineNumber++;
 
         // Aliens X coordinate check
-        if (isValidCoordinateCommand(lines.at(5), true)) {
-            int xCoordinate = getCoordinate(lines.at(5));
-//            m_defender.setX(xCoordinate);
-            std::cout << "Aliens X coord is: " << xCoordinate << std::endl;
+        if (isValidCoordinateCommand(lines.at(lineNumber), true))
+        {
+
+            int xCoordinate = getCoordinate(lines.at(lineNumber));
+            m_swarm.setX(xCoordinate);
+            std::cout << "Alien Swarm X coord is: " << xCoordinate << std::endl;
+
         } else {
+
             return false;
+
         }
+
+        lineNumber++;
 
         // Aliens Y coordinate check
-        if (isValidCoordinateCommand(lines.at(6), false)) {
-            int yCoordinate = getCoordinate(lines.at(6));
-//            m_defender.setY(yCoordinate);
-            std::cout << "Aliens Y coord is: " << yCoordinate << std::endl;
+        if (isValidCoordinateCommand(lines.at(lineNumber), false))
+        {
+
+            int yCoordinate = getCoordinate(lines.at(lineNumber));
+            m_swarm.setY(yCoordinate);
+            std::cout << "Alien Swarm Y coord is: " << yCoordinate << std::endl;
+
         } else {
+
             return false;
+
         }
 
-        if (lines.at(7) != "[ AlienMovements ]") {
+        lineNumber++;
+
+        QMap<QString, QPixmap> alienPictures;
+        alienPictures["S"] = QPixmap(":/images/squirtle.png");
+        alienPictures["W"] = QPixmap(":/images/wartortle.png");
+        alienPictures["B"] = QPixmap(":/images/blastoise.png");
+
+        for (auto &alienPic : alienPictures)
+        {
+
+            alienPic = alienPic.scaledToWidth(45);
+
+        }
+
+        std::regex alienLineRegex("([SWB]\\s)*[SWB]");
+        int swarmCount = lineNumber;
+        while (true) {
+            if (!std::regex_match(lines.at(swarmCount), alienLineRegex)) {
+                break;
+            }
+            swarmCount++;
+        }
+
+        std::vector<std::string> swarm(lines.begin()+lineNumber,lines.begin()+swarmCount);
+
+        QRegExp alienTypeRegex("S|W|B");
+        int alienStartX = m_swarm.getX();
+        int alienStartY = m_swarm.getY();
+        int alienWidth = alienPictures["S"].width();
+        int alienHeight = alienPictures["S"].height();
+
+        for (auto& line : swarm)
+        {
+
+            if (!std::regex_match(line, alienLineRegex))
+            {
+
+                std::cout << line << std::endl;
+                std::cout << "Error: Alien Swarm Line must only be of type ' ', 'S', 'W', or 'B'" << std::endl;
+                return false;
+
+            }
+
+            QString l = QString::fromStdString(line);
+            QStringList aliens = l.split(QRegExp("\\s"));
+            int buffer = 15;
+
+            for (auto& alienType : aliens)
+            {
+
+                if (!alienTypeRegex.exactMatch(alienType))
+                {
+
+                    std::cout << alienType.toStdString() << std::endl;
+                    std::cout << "Error: Alien must only be of type 'S', 'W', or 'B'" << std::endl;
+                    return false;
+
+                }
+
+                SharedMedia *media = sharedMediaFactory->getSharedMedia(alienType, alienPictures[alienType], nullptr, 10);
+                Alien *alien = new Alien(alienStartX, alienStartY, media);
+                m_swarm.add(alien);
+
+                alienStartX = alienStartX + alienWidth + buffer;
+
+            }
+
+            alienStartY = alienStartY + alienHeight + buffer;
+            alienStartX = m_swarm.getX();
+            lineNumber++;
+
+        }
+
+        if (lines.at(lineNumber) != "[ AlienMovements ]")
+        {
+
             std::cout << "ERROR: 7th line must read [ AlienMovements ]" << std::endl;
             return false;
+
         }
 
-        std::vector<std::string> alienMovements(lines.begin()+8,lines.begin()+24);
+        lineNumber++;
 
-        std::regex movementsRegex("Left|Right");
+        QString alienMovementsLine = QString::fromStdString(lines.at(lineNumber));
 
-        for (auto &alienMovement : alienMovements) {
-            if (!std::regex_match(alienMovement, movementsRegex)) {
-                std::cout << alienMovement << std::endl;
-                std::cout << "Error: Alien movements must only be 'Left' or 'Right'" << std::endl;
+        QRegExp alienMovementsRegex("([LR]\\s)*[LR]");
+
+        if (!alienMovementsRegex.exactMatch(alienMovementsLine))
+        {
+
+            std::cout << alienMovementsLine.toStdString() << std::endl;
+            std::cout << "ERROR: alien movements must be a pattern of L or R follwed by a space repeated e.g. L L R L R" << std::endl;
+
+        }
+
+        QStringList alienMovements = QString::fromStdString(lines.at(lineNumber)).split(QRegExp("\\s"));
+
+        QRegExp movementsRegex("L|R");
+
+        for (auto &alienMovement : alienMovements)
+        {
+
+            if (!movementsRegex.exactMatch(alienMovement))
+            {
+
+                std::cout << alienMovement.toStdString() << std::endl;
+                std::cout << "Error: Alien movements must only be 'L' or 'R'" << std::endl;
                 return false;
+
             }
-//            m_commandCentre.addToBuffer(alienMovement);
+
         }
 
-        if (lines.at(24) != "[ Commands ]") {
+        for (auto &alien : m_swarm.getList())
+        {
+
+            alien->setTraj(alienMovements);
+
+        }
+
+        lineNumber++;
+
+        if (lines.at(lineNumber) != "[ Commands ]") {
             std::cout << "ERROR: 24th line must read [ Commands ]" << std::endl;
             return false;
         }
 
-        std::vector<std::string> commands(lines.begin()+25, lines.end());
+        lineNumber++;
+
+        std::vector<std::string> commands(lines.begin()+lineNumber, lines.end());
 
         std::regex commandsRegex("Left|Right|FireLeft|FireRight|Fire");
 
-        for (auto &curLine : commands) {
-            if (!std::regex_match(curLine, commandsRegex)) {
+        for (auto &curLine : commands)
+        {
+
+            if (!std::regex_match(curLine, commandsRegex))
+            {
+
                 std::cout << curLine << std::endl;
                 std::cout << "Error: Commands must only be 'Left', 'Right', 'Fire', 'FireLeft', or 'FireRight'" << std::endl;
                 return false;
+
             }
+
             m_commandCentre.addToBuffer(curLine);
+
         }
 
         return true;
     }
+
 
     /**
      * \brief: Uses regex to check that defender coordinates are written in config.ini
@@ -181,6 +389,7 @@ namespace si {
         }
     }
 
+
     /**
      * \brief: Checks that the scale command is written in the file as Scale = tiny
      *          (for example)
@@ -196,6 +405,24 @@ namespace si {
             return false;
         }
     }
+
+
+    /**
+     * \brief: Uses regex to check the number of swarms is valid.
+     * \param: line, a line of the input file to be checked (config.ini)
+     * \result: true if the regex matches the line in the file, false otherwise
+     */
+    bool IOFile::isValidNumberOfSwarms(std::string line)
+    {
+        std::string label = "Swarms";
+        std::regex e (label + "\\s*=\\s*\\d+$");
+        if (std::regex_match(line, e)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /**
      * \brief: Extracts the integer value from a line such as "XPos = 123". Would
@@ -217,6 +444,29 @@ namespace si {
             return 0;
         }
     }
+
+
+    /**
+     * \brief: Extracts the integer value from a line such as "Swarms = 3". Would
+     *         return 3 in this case.
+     * \param: line, a line in our input file (config.ini)
+     * \result: the integer value extracted from that line
+     */
+    int IOFile::getNumberOfSwarms(std::string line)
+    {
+        // Match numbers
+        std::regex e ("\\d+");
+        std::smatch m;
+        if (std::regex_search (line, m, e)) {
+          return std::stoi(m[0]);
+        } else {
+            // Do some error handling and return 0
+            std::cout << "Could not parse: " << line << std::endl;
+            std::cout << "Using default value of 0" << std::endl;
+            return 0;
+        }
+    }
+
 
     /**
      * \brief: Extracts the scale string from a line in the input file, such as
@@ -245,8 +495,11 @@ namespace si {
      */
     const CommandCentre& IOFile::getCommandCentre() const
     {
+
         return m_commandCentre;
+
     }
+
 
     /**
      * \brief: Returns a player (Defender) object based on information supplied in config.ini
@@ -254,7 +507,22 @@ namespace si {
      */
     const Defender& IOFile::getDefender() const
     {
+
         return m_defender;
+
     }
+
+
+    /**
+     * \brief: Returns an ememy swarm object based on information supplied in config.ini
+     * \result: a swarm instance, ready to be used in a BattleSphere
+     */
+    const AlienComposite& IOFile::getSwarm() const
+    {
+
+        return m_swarm;
+
+    }
+
 
 } // end namespace si

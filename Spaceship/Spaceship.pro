@@ -25,7 +25,10 @@ SOURCES += main.cpp\
     alienbulletadapter.cpp \
     defenderbullet.cpp \
     sharedmedia.cpp \
-    sharedmediafactory.cpp
+    sharedmediafactory.cpp \
+    alien.cpp \
+    aliencomposite.cpp \
+    alienboss.cpp
 
 HEADERS  += \
     battlesphere.h \
@@ -45,8 +48,9 @@ HEADERS  += \
     sharedmedia.h \
     sharedmediafactory.h \
     alien.h \
-    swarmComponent.h \
-    swarmComposite.h
+    aliencomponent.h \
+    aliencomposite.h \
+    alienboss.h
 
 RESOURCES += \
     resources.qrc

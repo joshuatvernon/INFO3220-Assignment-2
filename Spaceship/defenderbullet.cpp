@@ -8,12 +8,16 @@ namespace si {
      * \param: bulletStartX, starting point for this bullet
      * \param: bulletStartY, starting point for this bullet
      */
-    DefenderBullet::DefenderBullet(int bulletStartX, int bulletStartY, QString bulletType, SharedMedia *media) {
+    DefenderBullet::DefenderBullet(int bulletStartX, int bulletStartY, QString bulletType, SharedMedia *media)
+    {
+
        this->setX(bulletStartX);
        this->setY(bulletStartY);
        this->setBulletType(bulletType);
        this->setMedia(media);
+
     }
+
 
     /**
      * \brief: Determines the amount of y direction motion of the bullet
@@ -22,7 +26,10 @@ namespace si {
      */
     void DefenderBullet::updateY(int updateAmount)
     {
+
         this->setY(this->getY() - updateAmount);
+
     }
+
 
 } // end namespace si

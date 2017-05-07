@@ -9,11 +9,14 @@ namespace si {
      * \param: bulletStartX, starting point for this bullet
      * \param: bulletStartY, starting point for this bullet
      */
-    AlienBullet::AlienBullet(int bulletStartX, int bulletStartY, QString bulletType)
+    AlienBullet::AlienBullet(int bulletStartX, int bulletStartY, QString bulletType, SharedMedia *media)
     {
+
         this->setX(bulletStartX);
         this->setY(bulletStartY);
         this->setBulletType(bulletType);
+        this->setMedia(media);
+
     }
 
 
@@ -25,7 +28,6 @@ namespace si {
     void AlienBullet::updateDownY(int updateAmount)
     {
         this->setY(this->getY() + updateAmount);
-        std::cout << "ALIEN!" << std::endl;
     }
 
 } // end namespace si

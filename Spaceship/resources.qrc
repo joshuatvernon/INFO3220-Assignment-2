@@ -11,11 +11,23 @@
         <file>normal-flame.png</file>
         <file>pokeball.png</file>
         <file>tiny-flame.png</file>
+        <file>blastoise.png</file>
+        <file>squirtle.png</file>
+        <file>wartortle.png</file>
+        <file>large-water-pump.png</file>
+        <file>normal-water-pump.png</file>
+        <file>tiny-water-pump.png</file>
+        <file>venusaur.png</file>
+        <file>vine-whip.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>charizard.wav</file>
         <file>charmander.wav</file>
         <file>charmeleon.wav</file>
         <file>mega-charizard.wav</file>
+        <file>squirtle.wav</file>
+        <file>blastoise.wav</file>
+        <file>wartortle.wav</file>
+        <file>explosion.wav</file>
     </qresource>
 </RCC>

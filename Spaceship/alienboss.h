@@ -1,5 +1,5 @@
-#ifndef ALIEN_H
-#define ALIEN_H
+#ifndef ALIENBOSS_H
+#define ALIENBOSS_H
 
 #include "gameelement.h"
 #include "aliencomponent.h"
@@ -9,22 +9,22 @@
 
 namespace si {
 
-    class Alien : public GameElement, public AlienComponent
+    class AlienBoss : public GameElement, public AlienComponent
     {
     public:
 
-        Alien(int alienStartX, int alienStartY, SharedMedia *media);
+        AlienBoss(int alienStartX, int alienStartY, SharedMedia *media);
 
-        ~Alien();
+        ~AlienBoss();
 
         void move() override;
         void speedUp() override;
 
-        void setTraj(QStringList traj);
+        void setDirection(int defenderLocation);
 
         void setMedia(SharedMedia* media) { this->m_media = media; }
         QPixmap getImage() { return this->m_media->getImage(); }
-        QSound *getSound() { return this->m_media->getSound(); }
+        QSound * getSound() { return this->m_media->getSound(); }
         QString getType() { return this->m_media->getType(); }
 
     private:
@@ -34,9 +34,10 @@ namespace si {
         int m_moveStep;
         int m_xSpeed;
         int m_ySpeed;
+        int m_direction;
 
     };
 
 } // end namespace si
 
-#endif // ALIEN_H
+#endif // ALIENBOSS_H

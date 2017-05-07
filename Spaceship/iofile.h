@@ -6,8 +6,13 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
+#include <QMap>
+#include <QStringList>
 
 #include "commandcentre.h"
+#include "aliencomposite.h"
+#include "sharedmedia.h"
+#include "sharedmediafactory.h"
 #include "defender.h"
 
 namespace si {
@@ -30,6 +35,8 @@ namespace si {
 
         const Defender& getDefender() const;
 
+        const AlienComposite& getSwarm() const;
+
     protected:
 
         IOFile(std::string fileName);
@@ -43,15 +50,20 @@ namespace si {
         // is isX, then uses "XPos" as label, otherwise uses "YPos" as label
         static bool isValidCoordinateCommand(std::string line, bool isX);
 
+        static bool isValidNumberOfSwarms(std::string line);
+
         static bool isValidScaleCommand(std::string line);
 
         // Gets '140' from 'XPos = 140' or 'YPos = 140'
         static int getCoordinate(std::string line);
 
+        static int getNumberOfSwarms(std::string line);
+
         static std::string getScale(std::string line);
 
         int m_numberOfLines;
         Defender m_defender;
+        AlienComposite m_swarm;
         CommandCentre m_commandCentre;
 
         std::string m_fileName;

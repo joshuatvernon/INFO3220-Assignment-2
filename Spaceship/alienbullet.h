@@ -9,7 +9,7 @@ namespace si {
     {
     public:
 
-        AlienBullet(int bulletStartX, int bulletStartY, QString bulletType);
+        AlienBullet(int bulletStartX, int bulletStartY, QString bulletType, SharedMedia *media);
 
         ~AlienBullet(){}
 

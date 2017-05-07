@@ -13,6 +13,8 @@ namespace si {
     {
     public:
 
+//        ~Bullet() { delete m_media; }
+
         void updateLeftX(int updateAmount) { setX(getX() - updateAmount); }
         void updateRightX(int updateAmount) { setX(getX() + updateAmount); }
 

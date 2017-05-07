@@ -16,9 +16,7 @@ namespace si {
 
         ~SharedMediaFactory() {}
 
-        SharedMedia* getSharedMedia(QString name, QPixmap image, QString soundPath);
-
-        SharedMedia* getSharedMedia(QString name, QPixmap image);
+        SharedMedia* getSharedMedia(QString name, QPixmap image, QString soundPath, int speed);
 
     private:
 

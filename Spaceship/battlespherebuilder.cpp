@@ -2,14 +2,30 @@
 
 namespace si {
 
+
     /**
      * \brief: Constructs the player itself
      * \param: defender, an instance of a player
      */
     void BattlesphereBuilder::buildDefender(const Defender& d)
     {
+
         m_defender = d;
+
     }
+
+
+    /**
+     * \brief: Constructs the players enemy alien swarm
+     * \param: defender, an instance of the enemey aliens
+     */
+    void BattlesphereBuilder::buildSwarm(const AlienComposite& s)
+    {
+
+        m_swarm = s;
+
+    }
+
 
     /**
      * \brief: Sets number of pixels bullet should move in one frame
@@ -36,7 +52,7 @@ namespace si {
      */
     BattleSphere* BattlesphereBuilder::getBattlesphere()
     {
-        si::BattleSphere* battlesphere = new si::BattleSphere(nullptr, m_defender, m_bulletSpeed, m_commandCentre);
+        si::BattleSphere* battlesphere = new si::BattleSphere(nullptr, m_defender, m_bulletSpeed, m_commandCentre, m_swarm);
         return battlesphere;
     }
 
