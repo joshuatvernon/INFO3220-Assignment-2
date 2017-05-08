@@ -15,10 +15,10 @@ namespace si {
     BattleSphere::BattleSphere(QWidget *parent, Defender d, int bulletSpeed, CommandCentre cc, AlienComposite s)
         : QDialog(parent),
           m_bulletSpeed(bulletSpeed),
+          m_collisonSound(":/sounds/explosion.wav"),
           m_commandCentre(cc),
           m_defender(d),
-          m_swarm(s),
-          m_collisonSound(":/sounds/explosion.wav")
+          m_swarm(s)
     {
 
         this->m_lives = 10;
