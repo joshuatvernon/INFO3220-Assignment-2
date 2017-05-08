@@ -52,10 +52,15 @@ namespace si {
     void AlienBoss::setDirection(int defenderLocation)
     {
 
-        if (this->getX() < defenderLocation) {
+        if (this->getX() < defenderLocation)
+        {
+
             this->m_direction = 1;
+
         } else {
+
             this->m_direction = -1;
+
         }
 
     }

@@ -66,7 +66,9 @@ namespace si {
 
         for (auto& alien : this->m_alienComponents)
         {
+
             alien->speedUp();
+
         }
 
     }

@@ -8,7 +8,9 @@ namespace si {
      */
     void CommandCentre::addToBuffer(std::string s)
     {
+
         m_commandBuffer.push_back(s);
+
     }
 
     /**
@@ -18,10 +20,16 @@ namespace si {
      */
     bool CommandCentre::hasNext() const
     {
-        if (m_commandBuffer.empty()) {
+
+        if (m_commandBuffer.empty())
+        {
+
             return false;
+
         } else {
+
             return true;
+
         }
     }
 
@@ -32,10 +40,12 @@ namespace si {
      */
     std::string CommandCentre::popNext()
     {
+
         std::string firstElement = m_commandBuffer.front();
         // Delete the first element
         m_commandBuffer.erase(m_commandBuffer.begin());
         return firstElement;
+
     }
 
 } // end namespace si

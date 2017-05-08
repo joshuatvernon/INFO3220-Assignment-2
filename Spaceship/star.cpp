@@ -9,8 +9,10 @@ namespace si {
      */
     Star::Star(int starX, int starY)
     {
+
         this->setX(starX);
         this->setY(starY);
+
     }
 
     /**
@@ -18,7 +20,9 @@ namespace si {
      */
     float Star::getOpacity() const
     {
+
         return m_opacity;
+
     }
 
     /**
@@ -26,7 +30,9 @@ namespace si {
      */
     float Star::getOpacityDelta() const
     {
+
         return m_opacityDelta;
+
     }
 
     /**
@@ -34,7 +40,9 @@ namespace si {
      */
     void Star::setOpacity(float opacity)
     {
+
         m_opacity = opacity;
+
     }
 
     /**
@@ -42,7 +50,9 @@ namespace si {
      */
     void Star::toggleOpacityDelta()
     {
+
         m_opacityDelta = -m_opacityDelta;
+
     }
 
 } // end namespace si

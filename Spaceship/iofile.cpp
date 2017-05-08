@@ -12,9 +12,14 @@ namespace si {
      */
     IOFile* IOFile::getInstance(std::string fileName)
     {
-        if (0 == instance) {
+
+        if (0 == instance)
+        {
+
             instance = new IOFile(fileName);
+
         }
+
         return instance;
     }
 
@@ -27,23 +32,32 @@ namespace si {
         : m_numberOfLines(0),
           m_fileName(fileName)
     {
+
         std::string line;
         std::vector<std::string> lines;
         std::ifstream inputStream (m_fileName);
 
         if (inputStream.is_open())
         {
+
             while( std::getline(inputStream, line) )
             {
+
                 if (!line.empty())
                 {
+
                     lines.push_back(line);
                     m_numberOfLines++;
+
                 }
+
             }
+
             inputStream.close();
             processLines(lines);
+
         } else {
+
             std::cout << "Error opening file! Is" <<
                          " it called config.ini and is it " <<
                          "placed inside the source directory, " <<
@@ -135,6 +149,7 @@ namespace si {
             return false;
 
         }
+
         lineNumber++;
 
         SharedMediaFactory *sharedMediaFactory = new SharedMediaFactory();
@@ -149,6 +164,7 @@ namespace si {
 
             if (alienBossOnRegex.exactMatch(alienBossLine))
             {
+
                 QPixmap bossImg = QPixmap(":/images/venusaur.png");
                 bossImg = bossImg.scaledToWidth(100);
                 SharedMedia *media = sharedMediaFactory->getSharedMedia("V", bossImg, nullptr, 10);
@@ -228,11 +244,18 @@ namespace si {
 
         std::regex alienLineRegex("([SWB]\\s)*[SWB]");
         int swarmCount = lineNumber;
-        while (true) {
-            if (!std::regex_match(lines.at(swarmCount), alienLineRegex)) {
+        while (true)
+        {
+
+            if (!std::regex_match(lines.at(swarmCount), alienLineRegex))
+            {
+
                 break;
+
             }
+
             swarmCount++;
+
         }
 
         std::vector<std::string> swarm(lines.begin()+lineNumber,lines.begin()+swarmCount);
@@ -377,14 +400,22 @@ namespace si {
     bool IOFile::isValidCoordinateCommand(std::string line, bool isX)
     {
         std::string label = "XPos";
-        if (!isX) {
+        if (!isX)
+        {
+
             label = "YPos";
+
         }
         std::regex e (label + "\\s*=\\s*\\d+$");
-        if (std::regex_match(line, e)) {
+        if (std::regex_match(line, e))
+        {
+
             return true;
+
         } else {
+
             return false;
+
         }
     }
 
@@ -398,11 +429,17 @@ namespace si {
     bool IOFile::isValidScaleCommand(std::string line)
     {
         std::regex e ("Scale\\s*=\\s*[a-z]+$");
-        if (std::regex_match(line, e)) {
+        if (std::regex_match(line, e))
+        {
+
             return true;
+
         } else {
+
             return false;
+
         }
+
     }
 
 
@@ -415,11 +452,17 @@ namespace si {
     {
         std::string label = "Swarms";
         std::regex e (label + "\\s*=\\s*\\d+$");
-        if (std::regex_match(line, e)) {
+        if (std::regex_match(line, e))
+        {
+
             return true;
+
         } else {
+
             return false;
+
         }
+
     }
 
 
@@ -434,14 +477,20 @@ namespace si {
         // Match numbers
         std::regex e ("\\d+");
         std::smatch m;
-        if (std::regex_search (line, m, e)) {
+        if (std::regex_search (line, m, e))
+        {
+
           return std::stoi(m[0]);
+
         } else {
+
             // Do some error handling and return 0
             std::cout << "Could not parse: " << line << std::endl;
             std::cout << "Using default value of 0" << std::endl;
             return 0;
+
         }
+
     }
 
 
@@ -456,14 +505,20 @@ namespace si {
         // Match numbers
         std::regex e ("\\d+");
         std::smatch m;
-        if (std::regex_search (line, m, e)) {
+        if (std::regex_search (line, m, e))
+        {
+
           return std::stoi(m[0]);
+
         } else {
+
             // Do some error handling and return 0
             std::cout << "Could not parse: " << line << std::endl;
             std::cout << "Using default value of 0" << std::endl;
             return 0;
+
         }
+
     }
 
 
@@ -478,13 +533,18 @@ namespace si {
         // Match numbers
         std::regex e ("tiny|normal|large|giant");
         std::smatch m;
-        if (std::regex_search (line, m, e)) {
+        if (std::regex_search (line, m, e))
+        {
+
           return m[0];
+
         } else {
+
             // Do some error handling and return "tiny"
             std::cout << "Could not parse: " << line << std::endl;
             std::cout << "Using default value of tiny" << std::endl;
             return "tiny";
+
         }
     }
 

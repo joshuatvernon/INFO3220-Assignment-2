@@ -33,7 +33,9 @@ namespace si {
      */
     void BattlesphereBuilder::buildBulletParameters(int movementSpeed)
     {
+
         m_bulletSpeed = movementSpeed;
+
     }
 
     /**
@@ -43,7 +45,9 @@ namespace si {
      */
     void BattlesphereBuilder::buildCommandCentre(const CommandCentre& commandCentre)
     {
+
         m_commandCentre = commandCentre;
+
     }
 
     /**
@@ -52,8 +56,10 @@ namespace si {
      */
     BattleSphere* BattlesphereBuilder::getBattlesphere()
     {
+
         si::BattleSphere* battlesphere = new si::BattleSphere(nullptr, m_defender, m_bulletSpeed, m_commandCentre, m_swarm);
         return battlesphere;
+
     }
 
 } // end namespace si

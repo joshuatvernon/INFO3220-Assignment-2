@@ -8,9 +8,11 @@ namespace si {
      */
     AlienBulletAdapter::AlienBulletAdapter(DownBullet *newAlienBullet)
     {
+
         this->theAlienBullet = newAlienBullet;
         this->setX(newAlienBullet->getX());
         this->setY(newAlienBullet->getY());
+
     }
 
     /**
@@ -20,7 +22,9 @@ namespace si {
      */
     void AlienBulletAdapter::updateY(int updateAmount)
     {
+
         theAlienBullet->updateDownY(updateAmount);
+
     }
 
 } // end namespace si

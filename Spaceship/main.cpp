@@ -9,6 +9,7 @@
 
 int main(int argc, char *argv[])
 {
+
     QApplication a(argc, argv);
     si::BattlesphereBuilder builder;
     si::GameDirector engine;
@@ -20,4 +21,5 @@ int main(int argc, char *argv[])
 
     delete w;
     return 0;
+
 }

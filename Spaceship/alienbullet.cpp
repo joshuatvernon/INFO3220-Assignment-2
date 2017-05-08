@@ -27,7 +27,9 @@ namespace si {
      */
     void AlienBullet::updateDownY(int updateAmount)
     {
+
         this->setY(this->getY() + updateAmount);
+
     }
 
 } // end namespace si

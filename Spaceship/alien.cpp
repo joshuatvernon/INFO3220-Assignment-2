@@ -40,6 +40,7 @@ namespace si {
 
         if (this->m_traj[this->m_moveStep] == 'L')
         {
+
             this->setX(this->getX() - this->m_xSpeed);
 
         } else {
@@ -50,9 +51,12 @@ namespace si {
 
         this->m_moveStep++;
 
-        if (m_moveStep == this->m_traj.size()) {
+        if (m_moveStep == this->m_traj.size())
+        {
+
             this->m_moveStep = 0;
             this->setY(this->getY() + this->m_ySpeed);
+
         }
 
     }

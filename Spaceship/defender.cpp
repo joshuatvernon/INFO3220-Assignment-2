@@ -10,10 +10,12 @@ namespace si {
      */
     Defender::Defender(int xPos, int yPos, QString scale, int speed)
     {
+
         this->setX(xPos);
         this->setY(yPos);
         m_scale = scale;
         m_speed = speed;
+
     }
 
     /**
@@ -21,10 +23,12 @@ namespace si {
      */
     Defender::Defender()
     {
+
         this->setX(0);
         this->setY(0);
         m_scale = "tiny";
         m_speed = 10;
+
     }
 
     /**
@@ -33,7 +37,9 @@ namespace si {
      */
     void Defender::setScale(QString scale)
     {
+
         m_scale = scale;
+
     }
 
     /**
@@ -42,7 +48,9 @@ namespace si {
      */
     void Defender::setSpeed(int speed)
     {
+
         m_speed = speed;
+
     }
 
     /**
@@ -51,7 +59,9 @@ namespace si {
      */
     QString Defender::getScale() const
     {
+
         return m_scale;
+
     }
 
     /**
@@ -60,7 +70,9 @@ namespace si {
      */
     int Defender::getSpeed() const
     {
+
         return m_speed;
+
     }
 
 } // end namespace si
